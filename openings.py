@@ -51,7 +51,7 @@ class Opening():
                 same_words += 0.75
         if same_words == 0:
             return 10
-        return 1 + 1.0 / same_words
+        return 2 - same_words / len(only_alpha_this_words)
 
 class Openings():
     """Collection of chess openings."""
