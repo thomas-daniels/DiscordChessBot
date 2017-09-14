@@ -2,6 +2,8 @@
 
 import json
 import pylev
+import chess
+import chess.pgn
 
 class Opening():
     """A chess opening, wih ECO code, name, FEN and moves in the UCI format."""
@@ -10,6 +12,16 @@ class Opening():
         self.name = name
         self.fen = fen
         self.uci = uci
+
+
+    def as_pgn_moves(self):
+        """Gets the PGN representation of the UCI moves."""
+        board = chess.Board()
+        for move in self.uci.split(" "):
+            board.push_uci(move)
+        exporter = chess.pgn.StringExporter(headers=False, comments=False)
+
+        return chess.pgn.Game().from_board(board).accept(exporter).strip(" *")
 
 class Openings():
     """Collection of chess openings."""
