@@ -6,7 +6,7 @@ import openings
 def test_openings():
     """Tests the openings module."""
     ops = openings.Openings("eco/eco.json")
-    selected = ops.closest_match("kingspawn")
+    selected = ops.closest_match("kings pawn")
     assert selected.name == "King's Pawn"
     assert selected.eco == "B00"
     assert selected.uci == "e2e4"
@@ -19,7 +19,7 @@ def test_openings():
 def test_commands():
     """Tests the commands module."""
     cmds = commands.Commands()
-    assert cmds.opening("kingspawn") == \
+    assert cmds.opening("kings pawn") == \
         "**B00 King's Pawn**. Moves: `1. e4`. " \
         "Board: <https://lichess.org/analysis/rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR_b_KQkq>"
 

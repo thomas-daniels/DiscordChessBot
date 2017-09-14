@@ -2,7 +2,6 @@
 
 import json
 import re
-import pylev
 import chess
 import chess.pgn
 
@@ -44,7 +43,14 @@ class Opening():
         if only_alpha_search in only_alpha_this:
             return 0.2
 
-        return pylev.levenshtein(only_alpha_search, only_alpha_this)
+        same_words = 0
+        for search_word in only_alpha_search_words:
+            if search_word in only_alpha_this_words:
+                same_words += 1
+        if same_words == 0:
+            return 2
+        else:
+            return 1 + 1.0 / same_words
 
 class Openings():
     """Collection of chess openings."""
