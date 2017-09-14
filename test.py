@@ -1,7 +1,7 @@
 """Tests for ChessBot."""
 
-import openings
 import commands
+import openings
 
 def test_openings():
     """Tests the openings module."""
