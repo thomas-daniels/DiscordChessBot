@@ -6,7 +6,17 @@ class Commands():
     """Commands for ChessBot"""
     def __init__(self):
         self.openings = openings.Openings("eco/eco.json")
+        self.commands = {"opening": self.opening}
 
+    def execute(self, cmd):
+        """Executes a command from chat."""
+        split = cmd.split(" ", 1)
+        name = split[0]
+        args = split[1]
+        if name in self.commands:
+            return self.commands[name](args)
+        else:
+            return None
 
     def opening(self, args):
         """`opening` command"""

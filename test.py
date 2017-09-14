@@ -22,3 +22,6 @@ def test_commands():
     assert cmds.opening("kingspawn") == \
         "**B00 King's Pawn**. Moves: `1. e4`. " \
         "Board: <https://lichess.org/analysis/rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR_b_KQkq>"
+
+    assert cmds.opening("king pawn nimzowitsch defense wheeler gambit") == \
+        cmds.execute("opening King's Pawn Game: Nimzowitsch Defense: Wheeler Gambit")
