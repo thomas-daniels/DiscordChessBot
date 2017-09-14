@@ -15,7 +15,7 @@ class Openings():
     """Collection of chess openings."""
     def __init__(self, path):
         with open(path, "r") as f:
-             openings = json.load(f)
+            openings = json.load(f)
         self._openings = []
         for opening in openings:
             self._openings.append(Opening(opening["c"], opening["n"], opening["f"], opening["m"]))
