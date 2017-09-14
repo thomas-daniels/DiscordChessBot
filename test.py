@@ -1,6 +1,7 @@
 """Tests for ChessBot."""
 
 import openings
+import commands
 
 def test_openings():
     """Tests the openings module."""
@@ -13,3 +14,11 @@ def test_openings():
 
     amar_gambit = ops.closest_match("Amar Gambit")
     assert amar_gambit.as_pgn_moves() == "1. Nh3 d5 2. g3 e5 3. f4 Bxh3 4. Bxh3 exf4"
+
+
+def test_commands():
+    """Tests the commands module."""
+    cmds = commands.Commands()
+    assert cmds.opening("kingspawn") == \
+        "**B00 King's Pawn**. Moves: `1. e4`. " \
+        "Board: <https://lichess.org/analysis/rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR_b_KQkq>"
