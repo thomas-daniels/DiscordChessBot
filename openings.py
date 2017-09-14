@@ -51,24 +51,25 @@ class Opening():
                 same_words += 0.75
         if same_words == 0:
             return 10
-        else:
-            return 1 + 1.0 / same_words
+        return 1 + 1.0 / same_words
 
 class Openings():
     """Collection of chess openings."""
     def __init__(self, path):
-        with open(path, "r") as f:
-            openings = json.load(f)
+        with open(path, "r") as file_obj:
+            openings = json.load(file_obj)
         self._openings = []
         for opening in openings:
             self._openings.append(Opening(opening["c"], opening["n"], opening["f"], opening["m"]))
 
     def closest_match(self, requested):
         """Finds the opening that's the closest match for the requested one."""
-        s = sorted(
+        if requested == "":
+            return None
+
+        result = sorted(
             self._openings, key=lambda x: x.distance(requested)
         )
-        if s[0].distance(requested) == 10:
+        if result[0].distance(requested) == 10:
             return None
-        else:
-            return s[0]
+        return result[0]
