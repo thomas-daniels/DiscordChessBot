@@ -35,8 +35,8 @@ class Opening():
         if only_alpha_search == only_alpha_this:
             return 0
 
-        only_alpha_search_words = only_alpha_search.split(" ")
-        only_alpha_this_words = only_alpha_this.split(" ")
+        only_alpha_search_words = list(filter(None, only_alpha_search.split(" ")))
+        only_alpha_this_words = list(filter(None, only_alpha_this.split(" ")))
         if sorted(only_alpha_search_words) == sorted(only_alpha_this_words):
             return 0.1
 
@@ -47,8 +47,10 @@ class Opening():
         for search_word in only_alpha_search_words:
             if search_word in only_alpha_this_words:
                 same_words += 1
+            if search_word in only_alpha_this:
+                same_words += 0.75
         if same_words == 0:
-            return 2
+            return 10
         else:
             return 1 + 1.0 / same_words
 
@@ -63,6 +65,10 @@ class Openings():
 
     def closest_match(self, requested):
         """Finds the opening that's the closest match for the requested one."""
-        return sorted(
+        s = sorted(
             self._openings, key=lambda x: x.distance(requested)
-        )[0]
+        )
+        if s[0].distance(requested) == 10:
+            return None
+        else:
+            return s[0]

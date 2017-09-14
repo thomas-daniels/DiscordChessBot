@@ -15,6 +15,9 @@ def test_openings():
     amar_gambit = ops.closest_match("Amar Gambit")
     assert amar_gambit.as_pgn_moves() == "1. Nh3 d5 2. g3 e5 3. f4 Bxh3 4. Bxh3 exf4"
 
+    assert ops.closest_match("foobar") is None
+    assert ops.closest_match("g4 english").eco == "A10"
+
 
 def test_commands():
     """Tests the commands module."""
