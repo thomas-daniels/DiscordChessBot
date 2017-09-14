@@ -13,7 +13,6 @@ class Opening():
         self.fen = fen
         self.uci = uci
 
-
     def as_pgn_moves(self):
         """Gets the PGN representation of the UCI moves."""
         board = chess.Board()
@@ -31,7 +30,6 @@ class Openings():
         self._openings = []
         for opening in openings:
             self._openings.append(Opening(opening["c"], opening["n"], opening["f"], opening["m"]))
-
 
     def closest_match(self, requested):
         """Finds the opening that's the closest match for the requested one."""
