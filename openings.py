@@ -40,7 +40,7 @@ class Opening():
         if sorted(only_alpha_search_words) == sorted(only_alpha_this_words):
             return 0.1
 
-        if only_alpha_search in only_alpha_this:
+        if only_alpha_search in only_alpha_this and " " in only_alpha_search:
             return 0.2
 
         same_words = 0
