@@ -9,7 +9,6 @@ import discord
 prefix = "?"
 client = discord.Client()
 cmds = commands.Commands()
-token = sys.argv[1]
 
 @client.event
 async def on_ready():
@@ -27,4 +26,8 @@ async def on_message(message):
         if executed is not None:
             await client.send_message(message.channel, executed)
 
+if len(sys.argv) != 2:
+    print("Usage: python bot.py token")
+    sys.exit(1)
+token = sys.argv[1]
 client.run(token)
