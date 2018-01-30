@@ -1,6 +1,7 @@
 """Module for the commands for ChessBot"""
 
 import openings
+import discord
 
 class Commands():
     """Commands for ChessBot"""
@@ -24,16 +25,20 @@ class Commands():
         """`opening` command"""
         found = self.openings.closest_match(args)
         if found is None:
-            return "No matching opening found."
-        return "**{0} {1}**. Moves: `{2}`. Board: <https://lichess.org/analysis/{3}>"\
-            .format(found.eco, found.name, found.as_pgn_moves(), found.fen.replace(" ", "_"))
+            return (False, "No matching opening found.")
+        embed = discord.Embed()
+        embed.title = found.eco + " " + found.name
+        embed.description = "https://lichess.org/analysis/" + found.fen.replace(" ", "_")
+        embed.colour = discord.Colour.dark_gold()
+        embed.set_footer(text=found.as_pgn_moves())
+        return (True, embed)
 
     def cmds(self, _):
         """`commands` command"""
-        return "Commands: {}".format(", ".join(
+        return (False, "Commands: {}".format(", ".join(
             sorted(map(lambda x: "`" + x + "`", self.commands.keys()))
-        ))
+        )))
 
     def help(self, _):
         """`help` command"""
-        return "Hello! I'm a bot, created by ProgramFOX. Use `commands` to see what I can do!"
+        return (False, "Hello! I'm a bot, created by ProgramFOX. Use `commands` to see what I can do!")

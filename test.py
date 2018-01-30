@@ -17,14 +17,3 @@ def test_openings():
 
     assert ops.closest_match("foobar") is None
     assert ops.closest_match("g4 english").eco == "A10"
-
-
-def test_commands():
-    """Tests the commands module."""
-    cmds = commands.Commands()
-    assert cmds.opening("kings pawn") == \
-        "**B00 King's Pawn**. Moves: `1. e4`. " \
-        "Board: <https://lichess.org/analysis/rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR_b_KQkq>"
-
-    assert cmds.opening("king pawn nimzowitsch defense wheeler gambit") == \
-        cmds.execute("opening King's Pawn Game: Nimzowitsch Defense: Wheeler Gambit")

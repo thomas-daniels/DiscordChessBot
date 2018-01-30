@@ -24,7 +24,12 @@ async def on_message(message):
     if message.content.split(" ")[0].startswith(prefix):
         executed = cmds.execute(message.content[len(prefix):])
         if executed is not None:
-            await client.send_message(message.channel, executed)
+            is_embed = executed[0]
+            msg = executed[1]
+            if is_embed:
+                await client.send_message(message.channel, embed=msg)
+            else:
+                await client.send_message(message.channel, msg)
 
 if len(sys.argv) != 2:
     print("Usage: python bot.py token")
